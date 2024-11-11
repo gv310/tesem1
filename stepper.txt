@@ -1,0 +1,31 @@
+#include <reg51.h>
+
+void delay(unsigned int time);
+
+void main() {
+    P0 = 0x00; // Initialize Port 0 to 0x00
+    while (1) {
+        P0 = 0x09; // Step 1
+        delay(100);
+        P0 = 0x0A; // Step 2
+        delay(100);
+        P0 = 0x06; // Step 3
+        delay(100);
+        P0 = 0x05; // Step 4
+        delay(100);
+    }
+}
+
+void delay(unsigned int time) {
+    unsigned int i;
+    TMOD = 0x10; // Set Timer 1 in Mode 1 (16-bit mode)
+    
+    for (i = 0; i < time; i++) {
+        TH1 = 0xFC; // Load high byte for 1 ms delay (assuming 12 MHz clock)
+        TL1 = 0x66; // Load low byte for 1 ms delay
+        TR1 = 1;    // Start Timer 1
+        while (TF1 == 0); // Wait until Timer 1 overflows
+        TR1 = 0;    // Stop Timer 1
+        TF1 = 0;    // Clear overflow flag
+    }
+}
