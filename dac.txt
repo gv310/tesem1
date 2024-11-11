@@ -1,0 +1,43 @@
+//Square
+#include <reg51.h>
+
+void delay(unsigned int time);
+
+void main() {
+    while(1) {
+        P0 = 0xFF;  
+        delay(25);  
+        P0 = 0x00;  
+        delay(25);  
+    }
+}
+
+void delay(unsigned int time) {
+    unsigned int i, j;
+    for(i = 0; i < time; i++)
+        for(j = 0; j < 5000; j++);  
+}
+
+//Triangular 
+
+#include <reg51.h>
+
+void main() {
+    int count;
+    
+    P0 = 0x00;  
+
+    
+    for(count = 0x00; count < 0xFF; count++) {
+        P0 = count;  
+    }
+
+    P0 = 0xFF;  
+
+ 
+    for(count = 0xFF; count > 0x00; count--) { 
+        P0 = count;  
+    }
+
+    P0 = 0x00;  
+}
