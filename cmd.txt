@@ -1,0 +1,20 @@
+ping domain_name
+
+ip config
+ipconfig/all
+ipconfig/release
+ipconfig/renew
+ipconfig/displaydns
+ipconfig/Hushdns
+
+netsat
+
+tracert <domain_name>
+
+NS lookup[option]
+
+arp -a
+arp -g
+arp -v
+
+finger
